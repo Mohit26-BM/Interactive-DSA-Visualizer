@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     };
 
   const stream = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: "openai/gpt-oss-120b",
     stream: true,
     max_tokens: 150,
     temperature: 0.65,
