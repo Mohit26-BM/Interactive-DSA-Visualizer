@@ -5,8 +5,6 @@ export default function TopologicalSortPage() {
     <AlgoVisualizerClient
       algo="topoSort"
       title="Topological Sort"
-      icon="⊳"
-      color="bg-violet-700"
       directed={true}
     />
   );

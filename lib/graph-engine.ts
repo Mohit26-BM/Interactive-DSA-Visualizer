@@ -101,7 +101,7 @@ function getNeighbors(s: GraphState, vertexId: string): string[] {
 export function buildDefaultGraph(directed: GraphType): GraphState {
   const labels = ["A", "B", "C", "D", "E"];
   const positions = computeCircularPositions(5, 300, 200, 140);
-  const vertices: GraphVertex[] = labels.map((label, i) => ({ id: newId(), label }));
+  const vertices: GraphVertex[] = labels.map((label) => ({ id: newId(), label }));
   const posMap: Record<string, { x: number; y: number }> = {};
   vertices.forEach((v, i) => { posMap[v.id] = positions[i]; });
 

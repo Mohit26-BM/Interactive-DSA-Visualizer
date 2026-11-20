@@ -7,6 +7,7 @@ import CodePanel from "@/components/shared/CodePanel";
 import AIExplainer from "@/components/shared/AIExplainer";
 import { usePlayer } from "@/components/shared/usePlayer";
 import { radixSort, SORT_CODE, SORT_ANNOTATIONS, SORT_COMPLEXITY, type RadixStep } from "@/lib/sorting-engine";
+import { parseNumberList } from "@/lib/parse-input";
 
 const BUCKET_COLORS = [
   "bg-blue-900/40 border-blue-700/40",
@@ -45,7 +46,9 @@ export default function RadixSortPage() {
   const handleRun = () => setSteps(radixSort(values));
 
   const handleCustomInput = () => {
-    const nums = customInput.split(",").map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n >= 0);
+    const parsed = parseNumberList(customInput, { integersOnly: true, allowNegative: false });
+    if (parsed.error) { setInputError(parsed.error); return; }
+    const nums = parsed.values;
     if (nums.length < 2) { setInputError("Enter at least 2 non-negative integers."); return; }
     if (nums.length > 10) { setInputError("Max 10 elements."); return; }
     setInputError("");
@@ -58,7 +61,7 @@ export default function RadixSortPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/algorithms/sorting" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,7 +69,6 @@ export default function RadixSortPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-sky-700 rounded-lg flex items-center justify-center text-sm font-bold">0-9</div>
           <h1 className="text-xl font-bold">Radix Sort</h1>
           <span className="text-xs bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full font-mono">
             {complexity.time} · {complexity.space} space

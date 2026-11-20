@@ -11,6 +11,7 @@ import {
   bubbleSort, selectionSort, insertionSort, mergeSort, quickSort, countingSort, heapSort,
   SortStep, SORT_CODE, SORT_ANNOTATIONS, SORT_COMPLEXITY,
 } from "@/lib/sorting-engine";
+import { parseNumberList } from "@/lib/parse-input";
 
 const DEFAULT_VALUES = [64, 34, 25, 12, 22, 11, 90, 45];
 
@@ -29,11 +30,9 @@ function randomArray(n = 8): number[] {
 interface Props {
   algo: string;
   title: string;
-  icon: string;
-  color: string;
 }
 
-export default function SortingVisualizerClient({ algo, title, icon, color }: Props) {
+export default function SortingVisualizerClient({ algo, title }: Props) {
   const [values, setValues] = useState<number[]>(DEFAULT_VALUES);
   const [steps, setSteps] = useState<SortStep[]>([]);
   const [customInput, setCustomInput] = useState(DEFAULT_VALUES.join(", "));
@@ -68,7 +67,9 @@ export default function SortingVisualizerClient({ algo, title, icon, color }: Pr
   };
 
   const handleCustomInput = () => {
-    const nums = customInput.split(",").map((s) => parseInt(s.trim())).filter((n) => !isNaN(n));
+    const parsed = parseNumberList(customInput, { integersOnly: true });
+    if (parsed.error) { setInputError(parsed.error); return; }
+    const nums = parsed.values;
     if (nums.length < 2) { setInputError("Enter at least 2 numbers."); return; }
     if (nums.length > 14) { setInputError("Max 14 elements."); return; }
     if (algo === "countingSort" && nums.some((n) => n < 0)) {
@@ -85,7 +86,7 @@ export default function SortingVisualizerClient({ algo, title, icon, color }: Pr
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/algorithms/sorting" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,7 +94,6 @@ export default function SortingVisualizerClient({ algo, title, icon, color }: Pr
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 ${color} rounded-lg flex items-center justify-center text-sm font-bold`}>{icon}</div>
           <h1 className="text-xl font-bold">{title}</h1>
           <span className="text-xs bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full font-mono">
             {complexity?.time} · {complexity?.space} space
@@ -194,7 +194,7 @@ export default function SortingVisualizerClient({ algo, title, icon, color }: Pr
             <h3 className="text-sm font-semibold text-gray-300">Run Sorting</h3>
             <button
               onClick={handleRun}
-              className={`w-full px-4 py-3 ${color} hover:opacity-90 text-white rounded-lg text-sm font-medium transition-all`}
+              className="w-full px-4 py-3 bg-[#3d4fb0] hover:bg-[#4a5cc4] text-[#fffdf5] rounded-lg text-sm font-medium transition-all"
             >
               Sort Array
             </button>

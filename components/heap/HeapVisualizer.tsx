@@ -110,7 +110,7 @@ export default function HeapVisualizer({ state, highlightIndices, phase, heapSiz
                 key={e.key}
                 x1={e.x1} y1={e.y1 + NODE_R - 3}
                 x2={e.x2} y2={e.y2 - NODE_R + 3}
-                stroke="#4b5563"
+                stroke="#7d8499"
                 strokeWidth={2}
               />
             ))}

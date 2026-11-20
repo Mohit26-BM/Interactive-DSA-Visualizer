@@ -8,12 +8,12 @@ An interactive step-by-step visualizer for data structures and algorithms, built
 
 | Layer      | Technology                           |
 | ---------- | ------------------------------------ |
-| Framework  | Next.js 16.2.9 (App Router)          |
+| Framework  | Next.js 16 (App Router)             |
 | UI Library | React 19                             |
 | Language   | TypeScript 5 (strict mode)           |
 | Styling    | Tailwind CSS v4                      |
 | Animation  | Framer Motion 12                     |
-| AI Feature | Groq SDK — `llama-3.3-70b-versatile` |
+| AI Feature | Groq SDK, `openai/gpt-oss-120b`, called only from the server route |
 | Deployment | Vercel                               |
 
 ---
@@ -181,13 +181,17 @@ dsa-visualizer/
 
 ## Environment Variables
 
-| Variable        | Where to set                                         | Purpose                      |
-| --------------- | ---------------------------------------------------- | ---------------------------- |
-| `GROQ_API_KEY`  | `.env.local` (local) / Vercel dashboard (production) | AI Explainer — Groq LLM API  |
+Copy `.env.example` to `.env.local`. The key is read only on the server (never use a `NEXT_PUBLIC_` name for it).
 
-`.env.local` is excluded from git via `.env*` in `.gitignore`.
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `GROQ_API_KEY` | for the AI explainer | Groq API key, used only by `/api/explain` |
+| `GROQ_MODEL` | no | Override the model (default `openai/gpt-oss-120b`) |
+| `EXPLAIN_RATE_LIMIT`, `EXPLAIN_RATE_WINDOW_MS` | no | Per-visitor request limit for the AI route |
+| `TRUSTED_PROXY_HOPS` | no | Number of trusted proxies in front of the app (Vercel: 1) |
 
----
+`.env.local` is excluded from git via `.env*` in `.gitignore`. Without a key everything works except the AI explanation, which shows a friendly message.
+
 
 ## Local Development
 
@@ -205,3 +209,19 @@ Open [http://localhost:3000](http://localhost:3000).
 2. Import the repo at [vercel.com](https://vercel.com) — Next.js is auto-detected, no config needed
 3. Add `GROQ_API_KEY` under **Settings → Environment Variables**
 4. Deploy — every push to `master` triggers a redeploy automatically
+
+---
+
+## Quality, Security and Design
+
+- **AI route hardening** — `/api/explain` checks same-origin, content type and a 8 KB body cap, validates every field, rate-limits per visitor and caps output tokens.
+- **Security headers** — CSP, `X-Content-Type-Options`, `X-Frame-Options: DENY`, Referrer-Policy and Permissions-Policy are set in `next.config.ts`.
+- **Input limits** — engines reject oversized or invalid input with a clear message (`lib/limits.ts`, `lib/parse-input.ts`); bad entries such as `5, abc, 3` are named instead of silently dropped. Radix sort explains that it takes non-negative whole numbers only.
+- **Tests** — `npm test` runs Vitest checks of the sorting, searching, DP, greedy, tree/heap, graph, list, trie, union-find and hash-map engines against independent reference results.
+- **Accessibility** — playback buttons carry accessible names, coloured text meets WCAG AA contrast, reduced-motion is honoured.
+- **Theme** — the "Notebook" look: graph-paper background, handwritten headings, highlighter-style colours. The home hero is a photo carousel (still image under reduced motion). Photos are from Pexels; photographers are credited in the footer.
+
+## Known Limitations
+
+- Graph algorithm pages run on built-in example graphs.
+- Inputs are capped to small sizes on purpose so the step list stays readable.

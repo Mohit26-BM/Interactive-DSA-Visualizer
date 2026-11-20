@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Controls from "@/components/shared/Controls";
 import CodePanel from "@/components/shared/CodePanel";
@@ -85,8 +85,8 @@ function TrieViz({ step }: { step?: TrieStep }) {
           const isHl = highlighted.has(cid);
           return (
             <g key={`${id}-${cid}`}>
-              <line x1={p.x} y1={p.y + 14} x2={cp.x} y2={cp.y - 14} stroke={isHl ? "#818cf8" : "#374151"} strokeWidth={isHl ? 2 : 1.5} />
-              <text x={(p.x + cp.x) / 2 + 4} y={(p.y + cp.y) / 2} fill={isHl ? "#a5b4fc" : "#4b5563"} fontSize={10} fontFamily="monospace" fontWeight="bold">{ch}</text>
+              <line x1={p.x} y1={p.y + 14} x2={cp.x} y2={cp.y - 14} stroke={isHl ? "#3d63dd" : "#d6ccb2"} strokeWidth={isHl ? 2 : 1.5} />
+              <text x={(p.x + cp.x) / 2 + 4} y={(p.y + cp.y) / 2} fill={isHl ? "#2f4fc2" : "#7d8499"} fontSize={10} fontFamily="monospace" fontWeight="bold">{ch}</text>
             </g>
           );
         });
@@ -99,19 +99,19 @@ function TrieViz({ step }: { step?: TrieStep }) {
         const isHl = highlighted.has(id);
         const isRoot = id === rootId;
         const isEnd = node.isEnd;
-        const stroke = isHl ? "#818cf8" : isEnd ? "#10b981" : isRoot ? "#6b7280" : "#4b5563";
-        const fill = isHl ? "#1e1b4b" : isEnd ? "#052e16" : "#111827";
+        const stroke = isHl ? "#3d63dd" : isEnd ? "#46c08a" : isRoot ? "#66708a" : "#7d8499";
+        const fill = isHl ? "#dbe4ff" : isEnd ? "#dff5e3" : "#fffdf5";
         if (isRoot) return (
           <g key={id}>
-            <circle cx={p.x} cy={p.y} r={12} fill="#111827" stroke="#4b5563" strokeWidth={1.5} />
-            <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="#6b7280" fontSize={8} fontFamily="monospace">root</text>
+            <circle cx={p.x} cy={p.y} r={12} fill="#fffdf5" stroke="#7d8499" strokeWidth={1.5} />
+            <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="#66708a" fontSize={8} fontFamily="monospace">root</text>
           </g>
         );
         return (
           <g key={id}>
             <circle cx={p.x} cy={p.y} r={13} fill={fill} stroke={stroke} strokeWidth={isHl ? 2 : 1.5} />
-            <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill={isHl ? "#a5b4fc" : isEnd ? "#34d399" : "#9ca3af"} fontSize={11} fontFamily="monospace" fontWeight="bold">{node.char}</text>
-            {isEnd && <circle cx={p.x + 9} cy={p.y - 9} r={3} fill="#10b981" />}
+            <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill={isHl ? "#2f4fc2" : isEnd ? "#46c08a" : "#4d5873"} fontSize={11} fontFamily="monospace" fontWeight="bold">{node.char}</text>
+            {isEnd && <circle cx={p.x + 9} cy={p.y - 9} r={3} fill="#46c08a" />}
           </g>
         );
       })}
@@ -152,7 +152,7 @@ export default function TriePage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,7 +160,6 @@ export default function TriePage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-violet-700 rounded-lg flex items-center justify-center text-sm font-bold">T</div>
           <h1 className="text-xl font-bold">Trie (Prefix Tree)</h1>
           <span className="text-xs bg-violet-500/10 border border-violet-500/20 text-violet-300 px-2 py-0.5 rounded-full">
             insert · search · startsWith · O(m)

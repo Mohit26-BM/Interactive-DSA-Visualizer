@@ -1,4 +1,5 @@
 import type { Step } from "./types";
+import { MAX, needCount, needIntegers, needRange } from "./limits";
 
 // ── Activity Selection ────────────────────────────────────────────────────────
 
@@ -13,6 +14,7 @@ export interface ActivityStep extends Step {
 }
 
 export function activitySelection(acts: Activity[]): ActivityStep[] {
+  needCount(acts, MAX.activities, "Activities");
   const steps: ActivityStep[] = [];
   const sorted = [...acts].sort((a, b) => a.end - b.end);
   const selected: number[] = [];
@@ -76,6 +78,7 @@ export interface FKStep extends Step {
 }
 
 export function fractionalKnapsack(rawItems: { name: string; weight: number; value: number }[], capacity: number): FKStep[] {
+  needCount(rawItems, MAX.knapsackItems, "Items");
   const steps: FKStep[] = [];
   const items: FKItem[] = rawItems
     .map((it, i) => ({ id: i, name: it.name, weight: it.weight, value: it.value, ratio: it.value / it.weight, taken: 0 }))
@@ -144,6 +147,7 @@ let huffIdCounter = 0;
 const newHuffId = () => `h${huffIdCounter++}`;
 
 export function huffmanCoding(freqs: Record<string, number>): HuffmanStep[] {
+  needCount(Object.keys(freqs), MAX.symbols, "Symbols", 1);
   huffIdCounter = 0;
   const steps: HuffmanStep[] = [];
   const nodes: Record<string, HuffNode> = {};
@@ -154,7 +158,7 @@ export function huffmanCoding(freqs: Record<string, number>): HuffmanStep[] {
     nodes[id] = { id, char, freq, code: "", depth: 0 };
   }
 
-  let heap = Object.keys(nodes).sort((a, b) => nodes[a].freq - nodes[b].freq);
+  const heap = Object.keys(nodes).sort((a, b) => nodes[a].freq - nodes[b].freq);
 
   const snap = (hl: number, expl: string, merging?: [string, string], newNode?: string, phase?: string): HuffmanStep => ({
     nodes: JSON.parse(JSON.stringify(nodes)),
@@ -229,6 +233,7 @@ export interface JobStep extends Step {
 }
 
 export function jobSequencing(rawJobs: Job[]): JobStep[] {
+  needCount(rawJobs, MAX.jobs, "Jobs");
   const steps: JobStep[] = [];
   const jobs = [...rawJobs].sort((a, b) => b.profit - a.profit);
   const maxDeadline = Math.max(...jobs.map(j => j.deadline));
@@ -291,12 +296,14 @@ export interface GreedyVsDPStep extends Step {
 const GV_INF = 99999;
 
 export function greedyVsDP(coins: number[], target: number): GreedyVsDPStep[] {
+  needIntegers(coins, "Coins", MAX.coins);
+  needRange(target, 0, MAX.coinTarget, "Target");
   const steps: GreedyVsDPStep[] = [];
   const sortedCoins = [...coins].sort((a, b) => b - a);
   const dpTable = new Array(target + 1).fill(GV_INF);
   dpTable[0] = 0;
 
-  let greedyPicked: number[] = [];
+  const greedyPicked: number[] = [];
   let greedyRemaining = target;
   let greedyCurrent: number | null = null;
   let dpI = 0, dpJ = 0;

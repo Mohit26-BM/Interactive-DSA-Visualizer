@@ -1,4 +1,5 @@
 import type { Step } from "./types";
+import { MAX, needCount, needIntegers, needNumbers, needRange, needText } from "./limits";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -49,6 +50,7 @@ const INF = 99999;
 // ── Fibonacci ────────────────────────────────────────────────────────────────
 
 export function fibonacciDP(n: number): FibStep[] {
+  needRange(n, 0, MAX.fib, "n");
   const steps: FibStep[] = [];
   const t: (number | null)[] = new Array(n + 1).fill(null);
 
@@ -75,6 +77,8 @@ export function fibonacciDP(n: number): FibStep[] {
 // ── Knapsack ─────────────────────────────────────────────────────────────────
 
 export function knapsackDP(items: KnapsackItem[], capacity: number): KnapsackStep[] {
+  needCount(items, MAX.knapsackItems, "Items", 1);
+  needRange(capacity, 0, MAX.knapsackCapacity, "Capacity");
   const steps: KnapsackStep[] = [];
   const n = items.length;
   const tbl: number[][] = Array.from({ length: n + 1 }, () => new Array(capacity + 1).fill(0));
@@ -108,6 +112,8 @@ export function knapsackDP(items: KnapsackItem[], capacity: number): KnapsackSte
 // ── LCS ──────────────────────────────────────────────────────────────────────
 
 export function lcsDP(s1: string, s2: string): LCSStep[] {
+  needText(s1, MAX.dpString, "First string");
+  needText(s2, MAX.dpString, "Second string");
   const steps: LCSStep[] = [];
   const m = s1.length, n = s2.length;
   const tbl: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
@@ -148,6 +154,8 @@ export function lcsDP(s1: string, s2: string): LCSStep[] {
 // ── Coin Change ──────────────────────────────────────────────────────────────
 
 export function coinChangeDP(coins: number[], target: number): CoinStep[] {
+  needIntegers(coins, "Coins", MAX.coins);
+  needRange(target, 0, MAX.coinTarget, "Target");
   const steps: CoinStep[] = [];
   const tbl: (number | null)[] = [0, ...new Array(target).fill(INF)];
 
@@ -179,6 +187,7 @@ export function coinChangeDP(coins: number[], target: number): CoinStep[] {
 // ── LIS ──────────────────────────────────────────────────────────────────────
 
 export function lisDP(arr: number[]): LISStep[] {
+  needNumbers(arr, "Array", MAX.dpArray);
   const steps: LISStep[] = [];
   const n = arr.length;
   const dp = new Array(n).fill(1);
@@ -368,6 +377,8 @@ export interface GridStep extends Step {
 }
 
 export function uniquePathsDP(m: number, n: number): GridStep[] {
+  needRange(m, 1, MAX.gridSide, "Rows");
+  needRange(n, 1, MAX.gridSide, "Columns");
   const steps: GridStep[] = [];
   const dp: number[][] = Array.from({ length: m }, () => new Array(n).fill(0));
   const grid: number[][] = Array.from({ length: m }, () => new Array(n).fill(0));
@@ -406,6 +417,8 @@ export function uniquePathsDP(m: number, n: number): GridStep[] {
 }
 
 export function minPathSumDP(inputGrid: number[][]): GridStep[] {
+  needCount(inputGrid, MAX.gridSide, "Grid rows", 1);
+  needCount(inputGrid[0], MAX.gridSide, "Grid columns", 1);
   const steps: GridStep[] = [];
   const m = inputGrid.length;
   const n = inputGrid[0].length;
@@ -462,6 +475,8 @@ export interface EditStep extends Step {
 }
 
 export function editDistanceDP(s1: string, s2: string): EditStep[] {
+  needText(s1, MAX.dpString, "First string");
+  needText(s2, MAX.dpString, "Second string");
   const steps: EditStep[] = [];
   const m = s1.length, n = s2.length;
   const dp: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));

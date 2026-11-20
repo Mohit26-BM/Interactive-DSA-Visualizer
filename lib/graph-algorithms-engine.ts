@@ -501,7 +501,7 @@ export function buildTopoGraph(): AlgoState {
     { x: 280, y: 300 },
     { x: 480, y: 200 },
   ];
-  const vertices: GraphVertex[] = labels.map((label, i) => ({ id: newId(), label }));
+  const vertices: GraphVertex[] = labels.map((label) => ({ id: newId(), label }));
   vertices.forEach((v, i) => { positions[v.id] = layout[i]; });
 
   const vByLabel = (l: string) => vertices.find((v) => v.label === l)!;

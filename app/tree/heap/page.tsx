@@ -57,7 +57,7 @@ export default function HeapPage() {
   const displayHeapSize = currentStep?.heapSize;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/tree" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,7 +65,6 @@ export default function HeapPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-lime-700 rounded-lg flex items-center justify-center text-sm font-bold">△</div>
           <h1 className="text-xl font-bold">Heap</h1>
           <span className="text-xs bg-lime-500/10 border border-lime-500/20 text-lime-300 px-2 py-0.5 rounded-full">
             Min/Max · Complete Binary Tree

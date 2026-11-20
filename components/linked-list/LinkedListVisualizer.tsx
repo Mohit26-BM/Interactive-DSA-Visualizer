@@ -47,7 +47,7 @@ export default function LinkedListVisualizer({ state, highlightNodes, phase }: L
           </div>
 
           <AnimatePresence mode="popLayout">
-            {orderedNodes.map((node, i) => {
+            {orderedNodes.map((node) => {
               const isHighlighted = highlightSet.has(node.id);
               const colorKey = isHighlighted ? (phase && phaseColor[phase] ? phase : "default") : "";
               const colors = isHighlighted ? phaseColor[colorKey] : null;

@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needIntegers, needNonNegative, needNumbers } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -48,6 +49,7 @@ function st(
 // ─── Bubble Sort ──────────────────────────────────────────────────────────────
 
 export function bubbleSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -77,6 +79,7 @@ export function bubbleSort(arr: number[]): SortStep[] {
 // ─── Selection Sort ───────────────────────────────────────────────────────────
 
 export function selectionSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -114,6 +117,7 @@ export function selectionSort(arr: number[]): SortStep[] {
 // ─── Insertion Sort ───────────────────────────────────────────────────────────
 
 export function insertionSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -144,6 +148,7 @@ export function insertionSort(arr: number[]): SortStep[] {
 // ─── Merge Sort ───────────────────────────────────────────────────────────────
 
 export function mergeSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -200,6 +205,7 @@ export function mergeSort(arr: number[]): SortStep[] {
 // ─── Quick Sort ───────────────────────────────────────────────────────────────
 
 export function quickSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -257,6 +263,7 @@ export function quickSort(arr: number[]): SortStep[] {
 // ─── Counting Sort ────────────────────────────────────────────────────────────
 
 export function countingSort(arr: number[]): SortStep[] {
+  needIntegers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -296,6 +303,7 @@ export function countingSort(arr: number[]): SortStep[] {
 // ─── Heap Sort ───────────────────────────────────────────────────────────────
 
 export function heapSort(arr: number[]): SortStep[] {
+  needNumbers(arr, "Array", MAX.sort);
   const steps: SortStep[] = [];
   const s: SortState = { arr: [...arr] };
   const n = s.arr.length;
@@ -354,6 +362,8 @@ export interface RadixStep extends Step {
 }
 
 export function radixSort(arr: number[]): RadixStep[] {
+  needIntegers(arr, "Array", MAX.radix);
+  needNonNegative(arr, "Radix sort");
   const steps: RadixStep[] = [];
   const a = [...arr];
   const maxVal = Math.max(...a);
@@ -391,7 +401,6 @@ export function radixSort(arr: number[]): RadixStep[] {
 
     // Collect
     let idx = 0;
-    const before = [...a];
     for (let b = 0; b < 10; b++) {
       for (const val of buckets[b]) {
         a[idx++] = val;

@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function GraphPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function GraphPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-violet-700 rounded-lg flex items-center justify-center text-sm font-bold">⬡</div>
           <h1 className="text-xl font-bold">Graphs</h1>
         </div>
       </header>
@@ -68,8 +67,6 @@ export default function GraphPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/graph/undirected"
-                icon="○—○"
-                color="bg-violet-700"
                 title="Undirected Graph"
                 subtitle="Symmetric edges"
                 description="Edges have no direction: A—B means A connects to B and B connects to A. Models roads, friendships, cables."
@@ -77,8 +74,6 @@ export default function GraphPage() {
               />
               <TypeCard
                 href="/graph/directed"
-                icon="○→○"
-                color="bg-purple-700"
                 title="Directed Graph"
                 subtitle="Asymmetric edges (digraph)"
                 description="Edges have direction: A→B does NOT imply B→A. Models web links, dependencies, control flow."

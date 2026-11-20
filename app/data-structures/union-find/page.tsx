@@ -130,7 +130,7 @@ export default function UnionFindPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,7 +138,6 @@ export default function UnionFindPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-indigo-700 rounded-lg flex items-center justify-center text-sm font-bold">∪</div>
           <h1 className="text-xl font-bold">Union-Find (DSU)</h1>
           <span className="text-xs bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full">
             path compression · union by rank · O(α(n))
@@ -150,7 +149,7 @@ export default function UnionFindPage() {
         <div className="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
           <div className="px-4 py-3 border-b border-gray-800 flex items-center justify-between">
             <span className="text-sm font-medium text-gray-300">Visualization</span>
-            <span className="text-xs text-gray-500">color = component · "root" = self-parent · r = rank · ring = highlighted node</span>
+            <span className="text-xs text-gray-500">color = component · &quot;root&quot; = self-parent · r = rank · ring = highlighted node</span>
           </div>
           <div className="relative">
             <UFVisualizer step={currentStep} />

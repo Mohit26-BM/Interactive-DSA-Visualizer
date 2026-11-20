@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needNumbers } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -172,6 +173,7 @@ function rebalance(s: AVLState, nodeId: string, steps: AVLStep[]): string {
 // ─── Build helper ─────────────────────────────────────────────────────────────
 
 export function buildAVL(values: number[]): AVLState {
+  needNumbers(values, "Values", MAX.tree);
   const s: AVLState = { nodes: [], root: null };
   for (const v of values) {
     insertAVLIntoState(s, v);
@@ -217,6 +219,7 @@ function insertAVLIntoState(s: AVLState, value: number): void {
 // ─── Operations ───────────────────────────────────────────────────────────────
 
 export function avlInsert(values: number[], value: number): AVLStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: AVLStep[] = [];
   const s = buildAVL(values);
 
@@ -276,6 +279,7 @@ export function avlInsert(values: number[], value: number): AVLStep[] {
 }
 
 export function avlSearch(values: number[], target: number): AVLStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: AVLStep[] = [];
   const s = buildAVL(values);
 
@@ -301,6 +305,7 @@ export function avlSearch(values: number[], target: number): AVLStep[] {
 }
 
 export function avlDelete(values: number[], target: number): AVLStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: AVLStep[] = [];
   const s = buildAVL(values);
 

@@ -103,7 +103,7 @@ export default function ArrayControls({ onRun, arrayLength }: ArrayControlsProps
         className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
           disabled
             ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-            : "bg-indigo-600 hover:bg-indigo-500 text-white"
+            : "bg-[#3d4fb0] hover:bg-[#4a5cc4] text-[#fffdf5]"
         }`}
       >
         Run {selected.label}

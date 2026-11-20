@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function SortingPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function SortingPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center text-sm font-bold">↕</div>
           <h1 className="text-xl font-bold">Sorting Algorithms</h1>
         </div>
       </header>
@@ -76,8 +75,6 @@ export default function SortingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/algorithms/sorting/bubble"
-                icon="↑↓"
-                color="bg-orange-700"
                 title="Bubble Sort"
                 subtitle="Adjacent swaps · stable"
                 description="Repeatedly swap adjacent elements if out of order. Largest elements bubble to the end each pass."
@@ -85,8 +82,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/selection"
-                icon="↓"
-                color="bg-yellow-700"
                 title="Selection Sort"
                 subtitle="Find minimum · swap to front"
                 description="Find the minimum element each pass and swap it to the current position. Simple but always O(n²)."
@@ -94,8 +89,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/insertion"
-                icon="→"
-                color="bg-lime-700"
                 title="Insertion Sort"
                 subtitle="Build sorted prefix · shift"
                 description="Insert each element into its correct position in the already-sorted prefix. Great for nearly-sorted data."
@@ -103,8 +96,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/merge"
-                icon="⇉"
-                color="bg-green-700"
                 title="Merge Sort"
                 subtitle="Divide & conquer · stable"
                 description="Recursively split array in half, sort each half, merge sorted halves. Guaranteed O(n log n)."
@@ -112,8 +103,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/quick"
-                icon="⚡"
-                color="bg-teal-700"
                 title="Quick Sort"
                 subtitle="Pivot partition · in-place"
                 description="Pick a pivot, partition around it, recurse on both sides. Fast in practice — O(n log n) average."
@@ -121,8 +110,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/counting"
-                icon="#"
-                color="bg-cyan-700"
                 title="Counting Sort"
                 subtitle="Non-comparison · O(n+k)"
                 description="Count occurrences of each value, reconstruct sorted array. Linear time when k (range) is small."
@@ -130,8 +117,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/heap"
-                icon="△"
-                color="bg-lime-700"
                 title="Heap Sort"
                 subtitle="Max-heap · in-place"
                 description="Build a max-heap, then repeatedly extract the maximum to sorted position. Guaranteed O(n log n) with O(1) extra space."
@@ -139,8 +124,6 @@ export default function SortingPage() {
               />
               <TypeCard
                 href="/algorithms/sorting/radix"
-                icon="0-9"
-                color="bg-sky-700"
                 title="Radix Sort"
                 subtitle="Non-comparison · LSD · bucket"
                 description="Sort integers digit-by-digit from least to most significant. Distributes into 10 buckets each pass. O(d·n) — beats O(n log n) for small d."

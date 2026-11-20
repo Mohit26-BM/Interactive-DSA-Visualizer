@@ -37,7 +37,7 @@ export default function FibonacciPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/dp" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,7 +45,6 @@ export default function FibonacciPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-pink-700 rounded-lg flex items-center justify-center text-sm font-bold">ƒ</div>
           <h1 className="text-xl font-bold">Fibonacci DP</h1>
           <span className="text-xs bg-pink-500/10 border border-pink-500/20 text-pink-300 px-2 py-0.5 rounded-full">
             1-D tabulation · f(n-1)+f(n-2)

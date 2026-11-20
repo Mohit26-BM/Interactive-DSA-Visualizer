@@ -5,8 +5,6 @@ export default function PrimPage() {
     <AlgoVisualizerClient
       algo="prim"
       title="Prim's MST"
-      icon="⌂"
-      color="bg-emerald-700"
       directed={false}
     />
   );

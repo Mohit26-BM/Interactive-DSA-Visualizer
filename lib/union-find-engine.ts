@@ -1,4 +1,5 @@
 import type { Step } from "./types";
+import { MAX, needCount, needRange } from "./limits";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -21,11 +22,6 @@ export function makeUnionFind(n: number): { parent: number[]; rank: number[] } {
   };
 }
 
-function findRoot(parent: number[], x: number): number {
-  while (parent[x] !== x) x = parent[x];
-  return x;
-}
-
 function snap(parent: number[], rank: number[], n: number, hl: number, expl: string, highlight: number[] = [], edges: [number, number][] = [], findPath?: number[], roots?: number[], phase?: string): UFStep {
   return {
     parent: [...parent],
@@ -42,6 +38,8 @@ function snap(parent: number[], rank: number[], n: number, hl: number, expl: str
 }
 
 export function demoUnionFind(n: number, ops: Array<{ op: "union"; x: number; y: number } | { op: "find"; x: number }>): UFStep[] {
+  needRange(n, 1, MAX.unionFindNodes, "Number of nodes");
+  needCount(ops, MAX.unionFindOps, "Operations");
   const steps: UFStep[] = [];
   const { parent, rank } = makeUnionFind(n);
 

@@ -1,4 +1,5 @@
 import type { Step } from "./types";
+import { MAX, needCount, needText } from "./limits";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -61,6 +62,8 @@ function snap(root: InternalNode, word: string, op: TrieStep["operation"], hl: n
 // ── Operations ────────────────────────────────────────────────────────────────
 
 export function buildTrieFromWords(words: string[]): { steps: TrieStep[]; root: InternalNode } {
+  needCount(words, MAX.trieWords, "Words");
+  words.forEach((w) => needText(w, MAX.trieWordLength, "Each word"));
   nodeIdCounter = 0;
   const root = makeNode("", 0, null);
   const steps: TrieStep[] = [];

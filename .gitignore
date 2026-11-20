@@ -44,3 +44,7 @@ next-env.d.ts
 CLAUDE.md
 AGENTS.md
 
+# local notes, tests and AI-tool files stay off GitHub
+_local/
+/tests/
+vitest.config.ts

@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needNumbers } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -52,6 +53,7 @@ function nodeVal(s: DLLState, id: string | null): number | string {
 // ─── Operations ───────────────────────────────────────────────────────────────
 
 export function dllInsertAtHead(values: number[], value: number): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -75,6 +77,7 @@ export function dllInsertAtHead(values: number[], value: number): DLLStep[] {
 }
 
 export function dllInsertAtTail(values: number[], value: number): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -98,6 +101,7 @@ export function dllInsertAtTail(values: number[], value: number): DLLStep[] {
 }
 
 export function dllInsertAtPosition(values: number[], value: number, position: number): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -134,6 +138,7 @@ export function dllInsertAtPosition(values: number[], value: number, position: n
 }
 
 export function dllDeleteAtHead(values: number[]): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -162,6 +167,7 @@ export function dllDeleteAtHead(values: number[]): DLLStep[] {
 }
 
 export function dllDeleteAtTail(values: number[]): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -190,6 +196,7 @@ export function dllDeleteAtTail(values: number[]): DLLStep[] {
 }
 
 export function dllDeleteAtPosition(values: number[], position: number): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -226,6 +233,7 @@ export function dllDeleteAtPosition(values: number[], position: number): DLLStep
 }
 
 export function dllSearch(values: number[], target: number): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 
@@ -249,6 +257,7 @@ export function dllSearch(values: number[], target: number): DLLStep[] {
 }
 
 export function dllReverse(values: number[]): DLLStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: DLLStep[] = [];
   const s = build(values);
 

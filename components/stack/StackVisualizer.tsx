@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { StackArrayState, StackLLState, STACK_MAX } from "@/lib/stack-engine";
+import { StackArrayState, StackLLState } from "@/lib/stack-engine";
 
 const phaseColor: Record<string, string> = {
   insert: "bg-green-500 border-green-400 text-white shadow-green-500/40",
@@ -125,7 +125,7 @@ export function LLStackVisualizer({ state, highlightNodes, phase }: LLStackVisua
         )}
         {ordered.length === 0 && <div className="text-gray-600 text-sm italic">Empty stack</div>}
         <AnimatePresence mode="popLayout">
-          {ordered.map((node, i) => {
+          {ordered.map((node) => {
             const isHi = hiSet.has(node.id);
             const colorKey = isHi ? (phase && phaseColor[phase] ? phase : "default") : "";
             const colorClass = isHi ? phaseColor[colorKey] : "bg-gray-800 border-gray-600 text-gray-200";

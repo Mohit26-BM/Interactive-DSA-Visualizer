@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function SearchingPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function SearchingPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-cyan-700 rounded-lg flex items-center justify-center text-sm font-bold">⌕</div>
           <h1 className="text-xl font-bold">Searching Algorithms</h1>
         </div>
       </header>
@@ -66,8 +65,6 @@ export default function SearchingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/algorithms/searching/linear"
-                icon="→"
-                color="bg-cyan-700"
                 title="Linear Search"
                 subtitle="Scan every element"
                 description="Check each element one by one until the target is found or the array is exhausted. Works on unsorted arrays."
@@ -75,8 +72,6 @@ export default function SearchingPage() {
               />
               <TypeCard
                 href="/algorithms/searching/binary"
-                icon="⌖"
-                color="bg-blue-700"
                 title="Binary Search"
                 subtitle="Halve search space each step"
                 description="Repeatedly halve the search range using low/mid/high pointers. O(log n) — requires sorted array."
@@ -84,8 +79,6 @@ export default function SearchingPage() {
               />
               <TypeCard
                 href="/algorithms/searching/jump"
-                icon="⇥"
-                color="bg-indigo-700"
                 title="Jump Search"
                 subtitle="Block jumps then linear scan"
                 description="Jump ahead by √n steps to find the right block, then do a linear scan within that block."

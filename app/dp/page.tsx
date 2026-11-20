@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function DPPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function DPPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-rose-700 rounded-lg flex items-center justify-center text-sm font-bold">DP</div>
           <h1 className="text-xl font-bold">Dynamic Programming</h1>
         </div>
       </header>
@@ -72,8 +71,6 @@ export default function DPPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/dp/fibonacci"
-                icon="ƒ"
-                color="bg-pink-700"
                 title="Fibonacci"
                 subtitle="1-D tabulation · two base cases"
                 description="Classic DP intro. Fill a 1-D table from base cases upward — each cell references just the two previous cells."
@@ -81,8 +78,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/knapsack"
-                icon="⊞"
-                color="bg-rose-700"
                 title="0/1 Knapsack"
                 subtitle="2-D table · take or skip"
                 description="For each item and each capacity, choose to take or skip. The 2-D table makes the decision tree visual."
@@ -90,8 +85,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/lcs"
-                icon="⊂"
-                color="bg-fuchsia-700"
                 title="LCS"
                 subtitle="Longest Common Subsequence"
                 description="Match characters across two strings. Diagonal fills on match; take max of up/left on mismatch."
@@ -99,8 +92,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/coin-change"
-                icon="¢"
-                color="bg-orange-700"
                 title="Coin Change"
                 subtitle="Min coins · 1-D table"
                 description="Find the minimum number of coins to reach a target amount. Try each coin at every amount from 1 to target."
@@ -108,8 +99,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/lis"
-                icon="↗"
-                color="bg-amber-700"
                 title="LIS"
                 subtitle="Longest Increasing Subsequence"
                 description="Find the longest strictly increasing subsequence. Each dp[i] stores the best length ending at index i."
@@ -117,8 +106,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/grid-dp"
-                icon="⊞"
-                color="bg-sky-700"
                 title="Grid DP"
                 subtitle="Unique Paths · Min Path Sum"
                 description="Two classic 2-D grid problems: count paths in a grid, or find the path with the minimum cost. Move right or down only."
@@ -126,8 +113,6 @@ export default function DPPage() {
               />
               <TypeCard
                 href="/dp/edit-distance"
-                icon="ED"
-                color="bg-violet-700"
                 title="Edit Distance"
                 subtitle="Levenshtein · insert/delete/sub"
                 description="Minimum number of single-character edits (insert, delete, substitute) to transform one string into another."

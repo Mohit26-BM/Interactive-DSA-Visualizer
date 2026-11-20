@@ -59,7 +59,7 @@ export default function ArrayStackPage() {
     : { elements: arrValues.map((v, i) => ({ value: v, id: `init-${i}` })), top: arrValues.length - 1, maxSize: 8 };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/stack" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +67,6 @@ export default function ArrayStackPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-sm font-bold">▤</div>
           <h1 className="text-xl font-bold">Array Stack</h1>
           <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded-full">LIFO · MAX=8</span>
         </div>

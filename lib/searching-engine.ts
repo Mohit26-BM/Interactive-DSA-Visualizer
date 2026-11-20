@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needNumbers, needRange } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -51,6 +52,8 @@ function st(
 // ─── Linear Search ────────────────────────────────────────────────────────────
 
 export function linearSearch(arr: number[], target: number): SearchStep[] {
+  needNumbers(arr, "Array", MAX.search);
+  needRange(target, -1e9, 1e9, "Target");
   const steps: SearchStep[] = [];
   const s: SearchState = { arr: [...arr] };
 
@@ -72,6 +75,8 @@ export function linearSearch(arr: number[], target: number): SearchStep[] {
 // ─── Binary Search ────────────────────────────────────────────────────────────
 
 export function binarySearch(arr: number[], target: number): SearchStep[] {
+  needNumbers(arr, "Array", MAX.search);
+  needRange(target, -1e9, 1e9, "Target");
   const steps: SearchStep[] = [];
   const s: SearchState = { arr: [...arr] };
 
@@ -103,6 +108,8 @@ export function binarySearch(arr: number[], target: number): SearchStep[] {
 // ─── Jump Search ──────────────────────────────────────────────────────────────
 
 export function jumpSearch(arr: number[], target: number): SearchStep[] {
+  needNumbers(arr, "Array", MAX.search);
+  needRange(target, -1e9, 1e9, "Target");
   const steps: SearchStep[] = [];
   const s: SearchState = { arr: [...arr] };
   const n = arr.length;

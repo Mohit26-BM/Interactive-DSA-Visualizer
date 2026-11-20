@@ -39,9 +39,9 @@ const phaseCaption: Record<string, string> = {
 
 const DEFAULT = [10, 20, 30, 40];
 
-interface Props { queueType: QueueType; title: string; icon: string; color: string }
+interface Props { queueType: QueueType; title: string }
 
-export default function QueueVisualizerClient({ queueType, title, icon, color }: Props) {
+export default function QueueVisualizerClient({ queueType, title }: Props) {
   const [values, setValues] = useState(DEFAULT);
   const [steps, setSteps] = useState<QueueStep[]>([]);
   const [currentOp, setCurrentOp] = useState("enqueue");
@@ -150,7 +150,7 @@ export default function QueueVisualizerClient({ queueType, title, icon, color }:
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/queue" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,7 +158,6 @@ export default function QueueVisualizerClient({ queueType, title, icon, color }:
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 ${color} rounded-lg flex items-center justify-center text-sm font-bold`}>{icon}</div>
           <h1 className="text-xl font-bold">{title}</h1>
         </div>
         {steps.length > 0 && step === steps.length - 1 && (

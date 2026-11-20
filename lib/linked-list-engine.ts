@@ -1,4 +1,5 @@
 import { LinkedListStep, LinkedListState, LinkedListNode } from "./types";
+import { MAX, needNumbers } from "./limits";
 
 let idCounter = 0;
 const newId = () => `node-${idCounter++}`;
@@ -28,6 +29,7 @@ function buildList(values: number[]): LinkedListState {
 }
 
 export function llInsertAtHead(values: number[], value: number): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -48,6 +50,7 @@ export function llInsertAtHead(values: number[], value: number): LinkedListStep[
 }
 
 export function llInsertAtTail(values: number[], value: number): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -85,6 +88,7 @@ export function llInsertAtTail(values: number[], value: number): LinkedListStep[
 }
 
 export function llInsertAtPosition(values: number[], value: number, position: number): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -124,6 +128,7 @@ export function llInsertAtPosition(values: number[], value: number, position: nu
 }
 
 export function llDeleteAtHead(values: number[]): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -147,6 +152,7 @@ export function llDeleteAtHead(values: number[]): LinkedListStep[] {
 }
 
 export function llDeleteAtTail(values: number[]): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -188,6 +194,7 @@ export function llDeleteAtTail(values: number[]): LinkedListStep[] {
 }
 
 export function llDeleteAtPosition(values: number[], position: number): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -221,6 +228,7 @@ export function llDeleteAtPosition(values: number[], position: number): LinkedLi
 }
 
 export function llSearch(values: number[], target: number): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 
@@ -250,6 +258,7 @@ export function llSearch(values: number[], target: number): LinkedListStep[] {
 }
 
 export function llReverse(values: number[]): LinkedListStep[] {
+  needNumbers(values, "List", MAX.list);
   const steps: LinkedListStep[] = [];
   const state = buildList(values);
 

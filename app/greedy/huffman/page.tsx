@@ -8,7 +8,7 @@ import AIExplainer from "@/components/shared/AIExplainer";
 import { usePlayer } from "@/components/shared/usePlayer";
 import {
   huffmanCoding, DEFAULT_HUFFMAN_FREQS,
-  GREEDY_CODE, GREEDY_ANNOTATIONS, GREEDY_COMPLEXITY, type HuffmanStep, type HuffNode,
+  GREEDY_CODE, GREEDY_ANNOTATIONS, GREEDY_COMPLEXITY, type HuffmanStep,
 } from "@/lib/greedy-engine";
 
 const phaseCaption: Record<string, string> = {
@@ -22,7 +22,7 @@ function HuffmanTreeViz({ step }: { step?: HuffmanStep }) {
     return <div className="p-8 text-center text-gray-600 text-sm">Click Run to build the Huffman tree.</div>;
   }
 
-  const { nodes, heap, merging, newNode } = step;
+  const { nodes, merging, newNode } = step;
 
   // Find root (in heap[0] when done, or nodes not referenced as children)
   const allIds = Object.keys(nodes);
@@ -60,8 +60,8 @@ function HuffmanTreeViz({ step }: { step?: HuffmanStep }) {
           if (!childId || !cp) continue;
           edges.push(
             <g key={`${n.id}-${childId}`}>
-              <line x1={p.x} y1={p.y + 16} x2={cp.x} y2={cp.y - 16} stroke="#374151" strokeWidth={1.5} />
-              <text x={(p.x + cp.x) / 2 - 6} y={(p.y + cp.y) / 2} fill={side === 0 ? "#60a5fa" : "#f472b6"} fontSize={10} fontFamily="monospace">{side === 0 ? "0" : "1"}</text>
+              <line x1={p.x} y1={p.y + 16} x2={cp.x} y2={cp.y - 16} stroke="#d6ccb2" strokeWidth={1.5} />
+              <text x={(p.x + cp.x) / 2 - 6} y={(p.y + cp.y) / 2} fill={side === 0 ? "#3d63dd" : "#f472b6"} fontSize={10} fontFamily="monospace">{side === 0 ? "0" : "1"}</text>
             </g>
           );
         }
@@ -74,15 +74,15 @@ function HuffmanTreeViz({ step }: { step?: HuffmanStep }) {
         const isMerging = merging?.includes(n.id);
         const isNew = newNode === n.id;
         const isLeaf = !n.left && !n.right;
-        const stroke = isMerging ? "#f59e0b" : isNew ? "#10b981" : isLeaf ? "#6366f1" : "#4b5563";
-        const fill = isMerging ? "#451a03" : isNew ? "#052e16" : isLeaf ? "#1e1b4b" : "#111827";
+        const stroke = isMerging ? "#f59e0b" : isNew ? "#46c08a" : isLeaf ? "#3d63dd" : "#7d8499";
+        const fill = isMerging ? "#fdf0c8" : isNew ? "#dff5e3" : isLeaf ? "#dbe4ff" : "#fffdf5";
         return (
           <g key={n.id}>
             <circle cx={p.x} cy={p.y} r={16} fill={fill} stroke={stroke} strokeWidth={isMerging || isNew ? 2 : 1.5} />
-            <text x={p.x} y={p.y - 3} textAnchor="middle" fill={isLeaf ? "#a5b4fc" : "#9ca3af"} fontSize={isLeaf ? 10 : 9} fontFamily="monospace" fontWeight="bold">
+            <text x={p.x} y={p.y - 3} textAnchor="middle" fill={isLeaf ? "#2f4fc2" : "#4d5873"} fontSize={isLeaf ? 10 : 9} fontFamily="monospace" fontWeight="bold">
               {isLeaf ? n.char : ""}
             </text>
-            <text x={p.x} y={p.y + (isLeaf ? 7 : 4)} textAnchor="middle" fill={isMerging ? "#fbbf24" : isNew ? "#34d399" : "#6b7280"} fontSize={9} fontFamily="monospace">
+            <text x={p.x} y={p.y + (isLeaf ? 7 : 4)} textAnchor="middle" fill={isMerging ? "#f0b429" : isNew ? "#46c08a" : "#66708a"} fontSize={9} fontFamily="monospace">
               {n.freq}
             </text>
           </g>
@@ -109,7 +109,7 @@ export default function HuffmanPage() {
   const nodes = currentStep?.nodes ?? {};
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/greedy" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +117,6 @@ export default function HuffmanPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-green-700 rounded-lg flex items-center justify-center text-sm font-bold">⌥</div>
           <h1 className="text-xl font-bold">Huffman Coding</h1>
           <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-300 px-2 py-0.5 rounded-full">optimal prefix codes · min-heap · O(n log n)</span>
         </div>
@@ -137,7 +136,7 @@ export default function HuffmanPage() {
               <div>
                 <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1.5">Min-Heap (sorted by frequency)</div>
                 <div className="flex gap-2 flex-wrap">
-                  {heap.map((id, i) => {
+                  {heap.map((id) => {
                     const n = nodes[id];
                     if (!n) return null;
                     const isMerge = currentStep?.merging?.includes(id);

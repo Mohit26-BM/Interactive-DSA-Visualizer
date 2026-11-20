@@ -4,24 +4,19 @@ import Link from "next/link";
 
 interface Props {
   href: string;
-  icon: string;
-  color: string; // Tailwind bg class
   title: string;
   subtitle: string;
   badges: string[];
   description: string;
 }
 
-export default function TypeCard({ href, icon, color, title, subtitle, badges, description }: Props) {
+export default function TypeCard({ href, title, subtitle, badges, description }: Props) {
   return (
     <Link
       href={href}
       className="group bg-gray-900 border border-gray-700 hover:border-gray-500 rounded-xl p-6 flex flex-col gap-4 transition-all duration-300 hover:shadow-2xl hover:shadow-black/40 hover:scale-[1.025] hover:-translate-y-1 active:scale-[0.99]"
     >
       <div className="flex items-start gap-4">
-        <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center text-xl font-bold shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-          {icon}
-        </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-white text-base">{title}</h3>
           <p className="text-xs text-gray-500 mt-0.5">{subtitle}</p>

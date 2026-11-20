@@ -44,7 +44,7 @@ export default function Controls({
           <button
             onClick={onReset}
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors"
-            title="Reset"
+            title="Reset" aria-label="Reset"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -54,7 +54,7 @@ export default function Controls({
             onClick={onStepBackward}
             disabled={step === 0}
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            title="Step Back"
+            title="Step Back" aria-label="Step Back"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
@@ -63,8 +63,8 @@ export default function Controls({
           <button
             onClick={playing ? onPause : onPlay}
             disabled={total === 0}
-            className="p-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            title={playing ? "Pause" : "Play"}
+            className="p-2.5 rounded-lg bg-[#3d4fb0] hover:bg-[#4a5cc4] text-[#fffdf5] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            title={playing ? "Pause" : "Play"} aria-label={playing ? "Pause" : "Play"}
           >
             {playing ? (
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ export default function Controls({
             onClick={onStepForward}
             disabled={step >= total - 1}
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            title="Step Forward"
+            title="Step Forward" aria-label="Step Forward"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z" />

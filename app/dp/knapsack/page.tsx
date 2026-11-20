@@ -56,7 +56,7 @@ export default function KnapsackPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/dp" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +64,6 @@ export default function KnapsackPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-rose-700 rounded-lg flex items-center justify-center text-sm font-bold">⊞</div>
           <h1 className="text-xl font-bold">0/1 Knapsack</h1>
           <span className="text-xs bg-rose-500/10 border border-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full">
             2-D DP table · take or skip

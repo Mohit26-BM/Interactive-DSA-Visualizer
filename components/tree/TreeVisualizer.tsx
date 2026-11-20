@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { TreeState, TreeNode } from "@/lib/tree-engine";
+import { TreeState } from "@/lib/tree-engine";
 
 interface Props {
   state: TreeState;
@@ -105,7 +105,7 @@ export default function TreeVisualizer({ state, highlightNodes, phase, traversal
               key={e.key}
               x1={e.x1} y1={e.y1 + NODE_H / 2 - 4}
               x2={e.x2} y2={e.y2 - NODE_H / 2 + 4}
-              stroke="#4b5563"
+              stroke="#7d8499"
               strokeWidth={2}
             />
           ))}

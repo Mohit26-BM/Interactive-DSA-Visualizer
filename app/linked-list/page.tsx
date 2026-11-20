@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function LinkedListPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function LinkedListPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-sm font-bold">⇢</div>
           <h1 className="text-xl font-bold">Linked Lists</h1>
         </div>
       </header>
@@ -69,8 +68,6 @@ export default function LinkedListPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/linked-list/singly"
-                icon="→"
-                color="bg-purple-600"
                 title="Singly Linked List"
                 subtitle="One-directional chain"
                 description="Each node points to the next node. Simple and memory-efficient. Traversal is one-way (head → tail)."
@@ -78,8 +75,6 @@ export default function LinkedListPage() {
               />
               <TypeCard
                 href="/linked-list/doubly"
-                icon="⇄"
-                color="bg-violet-600"
                 title="Doubly Linked List"
                 subtitle="Bi-directional chain"
                 description="Each node has both a next and a prev pointer. Enables O(1) tail operations and backward traversal."

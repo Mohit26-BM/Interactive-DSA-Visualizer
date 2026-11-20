@@ -25,12 +25,10 @@ const phaseCaption: Record<string, string> = {
 interface Props {
   algo: string;
   title: string;
-  icon: string;
-  color: string;
   directed: boolean;
 }
 
-export default function AlgoVisualizerClient({ algo, title, icon, color }: Props) {
+export default function AlgoVisualizerClient({ algo, title }: Props) {
   const [graphState] = useState<AlgoState>(() =>
     algo === "tsp" ? buildTSPGraph() :
     algo === "topoSort" ? buildTopoGraph() :
@@ -91,7 +89,7 @@ export default function AlgoVisualizerClient({ algo, title, icon, color }: Props
   })();
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/algorithms/graph" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,7 +97,6 @@ export default function AlgoVisualizerClient({ algo, title, icon, color }: Props
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 ${color} rounded-lg flex items-center justify-center text-sm font-bold`}>{icon}</div>
           <h1 className="text-xl font-bold">{title}</h1>
           <span className="text-xs bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full font-mono">
             {complexity?.time}
@@ -142,7 +139,7 @@ export default function AlgoVisualizerClient({ algo, title, icon, color }: Props
                           key={v.id}
                           x={pos.x + 18}
                           y={pos.y - 18}
-                          fill="#fbbf24"
+                          fill="#f0b429"
                           fontSize={11}
                           fontWeight="bold"
                           fontFamily="monospace"
@@ -177,7 +174,7 @@ export default function AlgoVisualizerClient({ algo, title, icon, color }: Props
                           key={e.id}
                           x={mx}
                           y={my - 6}
-                          fill="#9ca3af"
+                          fill="#4d5873"
                           fontSize={10}
                           fontFamily="monospace"
                           textAnchor="middle"
@@ -322,13 +319,13 @@ export default function AlgoVisualizerClient({ algo, title, icon, color }: Props
             <button
               type="button"
               onClick={handleRun}
-              className={`w-full px-4 py-3 ${color} hover:opacity-90 text-white rounded-lg text-sm font-medium transition-all`}
+              className="w-full px-4 py-3 bg-[#3d4fb0] hover:bg-[#4a5cc4] text-[#fffdf5] rounded-lg text-sm font-medium transition-all"
             >
               Run {title}
             </button>
             <div className="text-xs text-gray-500 space-y-1">
               {algo !== "tsp" && algo !== "topoSort" && <p>Graph: A—B(4), A—C(2), B—D(5), C—D(1), D—E(3), B—E(6)</p>}
-              {algo === "prim" && <p className="text-emerald-400/70">Highlighted edges form Prim's minimum spanning tree.</p>}
+              {algo === "prim" && <p className="text-emerald-400/70">Highlighted edges form Prim&apos;s minimum spanning tree.</p>}
               {algo === "topoSort" && <p>DAG: A→C, A→D, B→D, B→E, C→E, D→E</p>}
               {algo === "tsp" && <p>Cities: A—B(10), A—C(8), A—D(9), B—C(7), B—D(12), C—D(6)</p>}
               {(algo === "dijkstra" || algo === "bellmanFord") && (

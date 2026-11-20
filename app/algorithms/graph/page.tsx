@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function GraphAlgorithmsPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function GraphAlgorithmsPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-violet-700 rounded-lg flex items-center justify-center text-sm font-bold">⬡</div>
           <h1 className="text-xl font-bold">Graph Algorithms</h1>
         </div>
       </header>
@@ -71,8 +70,6 @@ export default function GraphAlgorithmsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/algorithms/graph/dijkstra"
-                icon="⬡"
-                color="bg-violet-700"
                 title="Dijkstra's Algorithm"
                 subtitle="Single-source shortest path"
                 description="Greedy approach using a priority queue. Relaxes edges from the cheapest unvisited vertex. O((V+E) log V)."
@@ -80,8 +77,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/bellman-ford"
-                icon="↺"
-                color="bg-purple-700"
                 title="Bellman-Ford"
                 subtitle="Handles negative weights"
                 description="Relax all edges V-1 times. Slower than Dijkstra but handles negative edge weights and detects negative cycles."
@@ -89,8 +84,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/kruskal"
-                icon="⌂"
-                color="bg-indigo-700"
                 title="Kruskal's MST"
                 subtitle="Minimum spanning tree"
                 description="Sort edges by weight, add each edge if it doesn't form a cycle (union-find). Builds the cheapest connected subgraph."
@@ -98,8 +91,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/tsp"
-                icon="✈"
-                color="bg-pink-700"
                 title="Travelling Salesman"
                 subtitle="NP-hard · brute force"
                 description="Find the shortest Hamiltonian cycle visiting all cities exactly once. Brute-forces all (n-1)! permutations on a 4-city complete graph."
@@ -107,8 +98,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/prim"
-                icon="⌂"
-                color="bg-emerald-700"
                 title="Prim's MST"
                 subtitle="Vertex-greedy spanning tree"
                 description="Grow a minimum spanning tree one vertex at a time. Greedily add the cheapest edge connecting the current tree to a new vertex."
@@ -116,8 +105,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/topological-sort"
-                icon="⊳"
-                color="bg-violet-700"
                 title="Topological Sort"
                 subtitle="Kahn's BFS · DAG ordering"
                 description="Linear ordering of a DAG where every edge u→v has u before v. Uses in-degree tracking and a BFS queue (Kahn's algorithm)."
@@ -125,8 +112,6 @@ export default function GraphAlgorithmsPage() {
               />
               <TypeCard
                 href="/algorithms/graph/floyd-warshall"
-                icon="⊞"
-                color="bg-sky-700"
                 title="Floyd-Warshall"
                 subtitle="All-pairs shortest paths"
                 description="Compute shortest distances between every pair of vertices in one O(V³) pass. Handles negative edges (not negative cycles)."

@@ -8,6 +8,17 @@ export function usePlayer(totalSteps: number) {
   const [speed, setSpeed] = useState(1);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // When the number of steps changes (a new run), start again from step 0, stopped.
+  // Done while rendering (React's "adjust state when a prop changes" pattern) instead of in an effect.
+  const [seenTotal, setSeenTotal] = useState(totalSteps);
+  if (seenTotal !== totalSteps) {
+    setSeenTotal(totalSteps);
+    setStep(0);
+    setPlaying(false);
+  }
+  const atEnd = step >= totalSteps - 1;
+  const isPlaying = playing && !atEnd; // reaching the last step stops playback
+
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -41,21 +52,12 @@ export function usePlayer(totalSteps: number) {
   }, [pause]);
 
   useEffect(() => {
-    if (!playing) return;
-    if (step >= totalSteps - 1) {
-      setPlaying(false);
-      return;
-    }
+    if (!isPlaying) return;
     timerRef.current = setTimeout(() => {
       setStep((s) => s + 1);
     }, 1000 / speed);
     return clearTimer;
-  }, [playing, step, totalSteps, speed, clearTimer]);
+  }, [isPlaying, step, speed, clearTimer]);
 
-  useEffect(() => {
-    pause();
-    setStep(0);
-  }, [totalSteps]);
-
-  return { step, playing, speed, play, pause, stepForward, stepBackward, reset, setSpeed };
+  return { step, playing: isPlaying, speed, play, pause, stepForward, stepBackward, reset, setSpeed };
 }

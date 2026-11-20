@@ -5,8 +5,6 @@ export default function TSPPage() {
     <AlgoVisualizerClient
       algo="tsp"
       title="Travelling Salesman Problem"
-      icon="✈"
-      color="bg-pink-700"
       directed={false}
     />
   );

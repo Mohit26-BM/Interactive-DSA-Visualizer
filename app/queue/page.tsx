@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function QueuePage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function QueuePage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-sm font-bold">⇉</div>
           <h1 className="text-xl font-bold">Queues</h1>
         </div>
       </header>
@@ -67,8 +66,6 @@ export default function QueuePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/queue/simple"
-                icon="→"
-                color="bg-teal-600"
                 title="Simple Queue"
                 subtitle="Basic FIFO array queue"
                 description="Fixed-size array with front and rear pointers. Simple but wastes space — deleted slots cannot be reused."
@@ -76,8 +73,6 @@ export default function QueuePage() {
               />
               <TypeCard
                 href="/queue/circular"
-                icon="↻"
-                color="bg-cyan-600"
                 title="Circular Queue"
                 subtitle="Wrap-around array queue"
                 description="Uses modular arithmetic so rear wraps to index 0 after reaching MAX. Reuses space freed by dequeue."
@@ -85,8 +80,6 @@ export default function QueuePage() {
               />
               <TypeCard
                 href="/queue/linkedlist"
-                icon="⇒"
-                color="bg-sky-600"
                 title="Linked List Queue"
                 subtitle="Dynamic FIFO queue"
                 description="Head = front (dequeue), tail = rear (enqueue). Unbounded capacity. Each element is a separate node."
@@ -94,8 +87,6 @@ export default function QueuePage() {
               />
               <TypeCard
                 href="/queue/deque"
-                icon="⇔"
-                color="bg-blue-600"
                 title="Deque"
                 subtitle="Double-ended queue"
                 description="Insert and remove from both ends in O(1). Generalizes both stack and queue. Doubly-linked for O(1) rear remove."

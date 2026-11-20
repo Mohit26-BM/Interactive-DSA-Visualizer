@@ -43,7 +43,7 @@ export default function EditDistancePage() {
   const result = lastStep?.dp[lastStep.s1.length]?.[lastStep.s2.length];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/dp" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,7 +51,6 @@ export default function EditDistancePage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-violet-700 rounded-lg flex items-center justify-center text-sm font-bold">ED</div>
           <h1 className="text-xl font-bold">Edit Distance</h1>
           <span className="text-xs bg-violet-500/10 border border-violet-500/20 text-violet-300 px-2 py-0.5 rounded-full">
             Levenshtein · insert / delete / substitute

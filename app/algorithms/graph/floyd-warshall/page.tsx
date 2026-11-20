@@ -30,7 +30,6 @@ function MatrixVisualizer({ step }: { step?: FWStep }) {
     );
   }
   const { matrix, labels, k, highlightI, highlightJ } = step;
-  const n = labels.length;
 
   const cellColor = (r: number, c: number) => {
     if (r === highlightI && c === highlightJ) return "bg-amber-900/70 border-amber-500/60 text-amber-200 ring-1 ring-amber-400/50";
@@ -83,7 +82,7 @@ export default function FloydWarshallPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/algorithms/graph" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,7 +90,6 @@ export default function FloydWarshallPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-sky-700 rounded-lg flex items-center justify-center text-sm font-bold">⊞</div>
           <h1 className="text-xl font-bold">Floyd-Warshall</h1>
           <span className="text-xs bg-sky-500/10 border border-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full">
             all-pairs shortest paths · O(V³)

@@ -58,7 +58,7 @@ export default function HashMapPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,7 +66,6 @@ export default function HashMapPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-amber-600 rounded-lg flex items-center justify-center text-sm font-bold">{"{}"}</div>
           <h1 className="text-xl font-bold">Hash Map</h1>
           <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded-full">O(1) avg · separate chaining</span>
         </div>

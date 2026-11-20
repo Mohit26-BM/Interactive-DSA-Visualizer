@@ -12,11 +12,11 @@ interface Props {
 }
 
 const phaseVertexColor: Record<string, string> = {
-  insert:  "#22c55e",
+  insert:  "#5fcf7a",
   found:   "#f97316",  // orange = currently processing
   delete:  "#ef4444",
   error:   "#ef4444",
-  default: "#6366f1",
+  default: "#3d63dd",
 };
 
 // Tailwind arbitrary-value filter classes per phase (avoids inline style prop)
@@ -106,7 +106,7 @@ export default function GraphVisualizer({ state, highlightVertices, highlightEdg
               refY="3.5"
               orient="auto"
             >
-              <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+              <polygon points="0 0, 10 3.5, 0 7" fill="#66708a" />
             </marker>
             <marker
               id="arrowhead-hl"
@@ -134,7 +134,7 @@ export default function GraphVisualizer({ state, highlightVertices, highlightEdg
                 key={e.id}
                 x1={pts.x1} y1={pts.y1}
                 x2={pts.x2} y2={pts.y2}
-                stroke={isHl ? highlightColor : "#4b5563"}
+                stroke={isHl ? highlightColor : "#7d8499"}
                 strokeWidth={isHl ? 2.5 : 2}
                 markerEnd={directed === "directed" ? (isHl ? "url(#arrowhead-hl)" : "url(#arrowhead)") : undefined}
                 className="transition-all duration-300"
@@ -149,8 +149,8 @@ export default function GraphVisualizer({ state, highlightVertices, highlightEdg
             const isHl      = hlVertexSet.has(v.id);
             const isVisited = !isHl && visitedSet.has(v.id);
 
-            const fillColor   = isHl ? highlightColor : isVisited ? "#052e16" : "#1f2937";
-            const strokeColor = isHl ? highlightColor : isVisited ? "#22c55e" : "#4b5563";
+            const fillColor   = isHl ? highlightColor : isVisited ? "#dff5e3" : "#ece4cf";
+            const strokeColor = isHl ? highlightColor : isVisited ? "#5fcf7a" : "#7d8499";
             const glowClass   = isHl
               ? (phaseGlowClass[phase ?? "default"] ?? phaseGlowClass.default)
               : isVisited
@@ -170,7 +170,7 @@ export default function GraphVisualizer({ state, highlightVertices, highlightEdg
                   x={pos.x} y={pos.y}
                   textAnchor="middle"
                   dominantBaseline="central"
-                  fill="white"
+                  fill="#1d2a44"
                   fontWeight="bold"
                   fontSize={14}
                   className="select-none"

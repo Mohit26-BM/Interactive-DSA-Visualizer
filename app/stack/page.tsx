@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function StackPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function StackPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-sm font-bold">▤</div>
           <h1 className="text-xl font-bold">Stacks</h1>
         </div>
       </header>
@@ -69,8 +68,6 @@ export default function StackPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/stack/array"
-                icon="▤"
-                color="bg-orange-600"
                 title="Array Stack"
                 subtitle="Fixed-capacity implementation"
                 description="Uses a fixed-size array with a top pointer. Memory-efficient, cache-friendly, but limited by MAX_SIZE."
@@ -78,8 +75,6 @@ export default function StackPage() {
               />
               <TypeCard
                 href="/stack/linkedlist"
-                icon="⇡"
-                color="bg-amber-600"
                 title="Linked List Stack"
                 subtitle="Dynamic implementation"
                 description="Each push allocates a new node. No size limit (beyond heap memory). Slightly more memory per element."

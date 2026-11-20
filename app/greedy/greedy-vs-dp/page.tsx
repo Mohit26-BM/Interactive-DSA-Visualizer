@@ -9,6 +9,7 @@ import { usePlayer } from "@/components/shared/usePlayer";
 import {
   greedyVsDP, GREEDY_CODE, GREEDY_ANNOTATIONS, GREEDY_COMPLEXITY, type GreedyVsDPStep,
 } from "@/lib/greedy-engine";
+import { parseNumberList } from "@/lib/parse-input";
 
 const GV_INF = 99999;
 
@@ -29,9 +30,10 @@ export default function GreedyVsDPPage() {
   const currentStep = steps[step] as GreedyVsDPStep | undefined;
 
   const handleRun = () => {
-    const coins = coinsInput.split(/[,\s]+/).map(Number).filter(n => n > 0 && Number.isInteger(n));
+    const parsed = parseNumberList(coinsInput, { integersOnly: true, positiveOnly: true, min: 1, max: 6, noun: "coin" });
+    if (parsed.error) { setError(parsed.error); return; }
+    const coins = parsed.values;
     const target = Math.max(1, Math.min(20, parseInt(targetInput) || 6));
-    if (coins.length === 0) { setError("Enter at least one coin."); return; }
     setError("");
     setSteps(greedyVsDP([...new Set(coins)].sort((a, b) => b - a), target));
   };
@@ -53,7 +55,7 @@ export default function GreedyVsDPPage() {
   const finalDP = lastStep?.dpTable?.[lastStep?.target ?? 0] ?? -1;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/greedy" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +63,6 @@ export default function GreedyVsDPPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-amber-700 rounded-lg flex items-center justify-center text-sm font-bold">⚡</div>
           <h1 className="text-xl font-bold">Greedy vs DP</h1>
           <span className="text-xs bg-amber-500/10 border border-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">coin change · when greedy fails</span>
         </div>

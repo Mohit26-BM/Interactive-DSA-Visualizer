@@ -22,13 +22,16 @@ export default function AIExplainer({
   const [open, setOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Clear whenever the step changes
-  useEffect(() => {
+  // Clear the answer whenever the step changes (adjusted while rendering, not in an effect) ...
+  const [seenStep, setSeenStep] = useState(stepIndex);
+  if (seenStep !== stepIndex) {
+    setSeenStep(stepIndex);
     setAiText("");
     setOpen(false);
     setStreamDone(false);
-    abortRef.current?.abort();
-  }, [stepIndex]);
+  }
+  // ... and stop any request still streaming for the old step
+  useEffect(() => () => abortRef.current?.abort(), [stepIndex]);
 
   const handleExplain = async () => {
     abortRef.current?.abort();
@@ -49,7 +52,11 @@ export default function AIExplainer({
       });
 
       if (!res.ok || !res.body) {
-        setAiText("Could not reach AI. Check your GROQ_API_KEY in .env.local.");
+        setAiText(
+          res.status === 429 ? "Too many requests. Please wait a minute and try again."
+            : res.status === 503 ? "The AI explanation is not configured on this server."
+            : "The explanation is unavailable right now. Try again in a moment.",
+        );
         setLoading(false);
         setStreamDone(true);
         return;

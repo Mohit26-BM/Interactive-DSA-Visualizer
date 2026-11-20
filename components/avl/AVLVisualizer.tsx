@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { AVLState, AVLNode, getHeight, getBF } from "@/lib/avl-engine";
+import { AVLState, getHeight } from "@/lib/avl-engine";
 
 interface Props {
   state: AVLState;
@@ -48,12 +48,6 @@ const phaseColor: Record<string, string> = {
   error:   "fill-red-500 stroke-red-400",
   default: "fill-indigo-500 stroke-indigo-400",
 };
-
-function bfColor(bf: number): string {
-  if (bf === 0) return "text-gray-400";
-  if (Math.abs(bf) === 1) return "text-yellow-400";
-  return "text-red-400";
-}
 
 function bfBadgeClass(bf: number): string {
   if (bf === 0) return "fill-gray-600";
@@ -124,7 +118,7 @@ export default function AVLVisualizer({ state, highlightNodes, phase, rotationTy
               key={e.key}
               x1={e.x1} y1={e.y1 + NODE_R - 3}
               x2={e.x2} y2={e.y2 - NODE_R + 3}
-              stroke="#4b5563"
+              stroke="#7d8499"
               strokeWidth={2}
             />
           ))}

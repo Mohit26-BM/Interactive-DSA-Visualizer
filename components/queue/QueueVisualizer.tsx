@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { SimpleQueueState, LLQueueState, DequeState, QueueType } from "@/lib/queue-engine";
+import { SimpleQueueState, LLQueueState, DequeState } from "@/lib/queue-engine";
 
 const phaseColor: Record<string, string> = {
   insert: "bg-green-500 border-green-400 text-white shadow-green-500/40",
@@ -139,7 +139,7 @@ export function LLQueueVisualizer({ state, highlightNodes, phase }: LLQueueVisua
           </div>
           <div className="flex items-center flex-wrap gap-2">
             <AnimatePresence mode="popLayout">
-              {ordered.map((node, i) => {
+              {ordered.map((node) => {
                 const isHi = hiSet.has(node.id);
                 const isFront = node.id === state.head;
                 const isRear = node.id === state.tail;
@@ -228,7 +228,7 @@ export function DequeVisualizer({ state, highlightNodes, phase }: DequeVisualize
       ) : (
         <div className="flex items-center flex-wrap gap-2">
           <AnimatePresence mode="popLayout">
-            {ordered.map((node, i) => {
+            {ordered.map((node) => {
               const isHi = hiSet.has(node.id);
               const isFront = node.id === state.head;
               const isRear = node.id === state.tail;

@@ -25,11 +25,9 @@ const phaseCaption: Record<string, string> = {
 interface Props {
   algo: string;
   title: string;
-  icon: string;
-  color: string;
 }
 
-export default function SearchingVisualizerClient({ algo, title, icon, color }: Props) {
+export default function SearchingVisualizerClient({ algo, title }: Props) {
   const requiresSorted = algo === "binarySearch" || algo === "jumpSearch";
   const defaultArr = requiresSorted ? SORTED_DEFAULT : UNSORTED_DEFAULT;
 
@@ -55,7 +53,7 @@ export default function SearchingVisualizerClient({ algo, title, icon, color }: 
   const max = Math.max(...values, 1);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/algorithms/searching" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +61,6 @@ export default function SearchingVisualizerClient({ algo, title, icon, color }: 
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 ${color} rounded-lg flex items-center justify-center text-sm font-bold`}>{icon}</div>
           <h1 className="text-xl font-bold">{title}</h1>
           <span className="text-xs bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full font-mono">
             {complexity?.time}
@@ -183,7 +180,7 @@ export default function SearchingVisualizerClient({ algo, title, icon, color }: 
             </div>
             <button
               onClick={handleRun}
-              className={`w-full px-4 py-3 ${color} hover:opacity-90 text-white rounded-lg text-sm font-medium transition-all`}
+              className="w-full px-4 py-3 bg-[#3d4fb0] hover:bg-[#4a5cc4] text-[#fffdf5] rounded-lg text-sm font-medium transition-all"
             >
               Search for {target}
             </button>

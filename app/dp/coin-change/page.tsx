@@ -8,6 +8,7 @@ import CodePanel from "@/components/shared/CodePanel";
 import AIExplainer from "@/components/shared/AIExplainer";
 import { usePlayer } from "@/components/shared/usePlayer";
 import { coinChangeDP, DP_CODE, DP_ANNOTATIONS, DP_COMPLEXITY, type CoinStep } from "@/lib/dp-engine";
+import { parseNumberList } from "@/lib/parse-input";
 
 const phaseCaption: Record<string, string> = {
   insert:  "bg-emerald-500/15 border-emerald-500/30 text-emerald-200",
@@ -26,12 +27,9 @@ export default function CoinChangePage() {
   const currentStep = steps[step] as CoinStep | undefined;
 
   const handleRun = () => {
-    const coins = coinsInput
-      .split(/[,\s]+/)
-      .map(Number)
-      .filter((n) => n > 0 && Number.isInteger(n))
-      .slice(0, 6);
-    if (coins.length === 0) { setError("Enter at least one positive coin."); return; }
+    const parsed = parseNumberList(coinsInput, { integersOnly: true, positiveOnly: true, min: 1, max: 6, noun: "coin" });
+    if (parsed.error) { setError(parsed.error); return; }
+    const coins = parsed.values;
     const target = Math.max(1, Math.min(20, parseInt(targetInput) || 6));
     setError("");
     setTargetInput(String(target));
@@ -46,7 +44,7 @@ export default function CoinChangePage() {
   const result = lastStep ? (lastStep.table[parseInt(targetInput)] as number) >= 99999 ? -1 : lastStep.table[parseInt(targetInput)] : null;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/dp" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,7 +52,6 @@ export default function CoinChangePage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-orange-700 rounded-lg flex items-center justify-center text-sm font-bold">¢</div>
           <h1 className="text-xl font-bold">Coin Change</h1>
           <span className="text-xs bg-orange-500/10 border border-orange-500/20 text-orange-300 px-2 py-0.5 rounded-full">
             min coins · 1-D DP table

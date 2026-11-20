@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needNumbers } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -78,6 +79,7 @@ function siftDown(arr: number[], i: number, size: number, type: HeapType, steps:
 // ─── Operations ───────────────────────────────────────────────────────────────
 
 export function heapInsert(values: number[], value: number, type: HeapType): HeapStep[] {
+  needNumbers(values, "Values", MAX.heap);
   const steps: HeapStep[] = [];
   const arr = [...values];
   const state: HeapState = { arr: [...arr], heapType: type };
@@ -96,6 +98,7 @@ export function heapInsert(values: number[], value: number, type: HeapType): Hea
 }
 
 export function heapExtract(values: number[], type: HeapType): HeapStep[] {
+  needNumbers(values, "Values", MAX.heap);
   const steps: HeapStep[] = [];
   const arr = [...values];
   const state: HeapState = { arr: [...arr], heapType: type };
@@ -124,6 +127,7 @@ export function heapExtract(values: number[], type: HeapType): HeapStep[] {
 }
 
 export function heapPeek(values: number[], type: HeapType): HeapStep[] {
+  needNumbers(values, "Values", MAX.heap);
   const steps: HeapStep[] = [];
   const arr = [...values];
   const state: HeapState = { arr: [...arr], heapType: type };
@@ -141,6 +145,7 @@ export function heapPeek(values: number[], type: HeapType): HeapStep[] {
 }
 
 export function heapBuildHeap(values: number[], type: HeapType): HeapStep[] {
+  needNumbers(values, "Values", MAX.heap);
   const steps: HeapStep[] = [];
   const arr = [...values];
   const state: HeapState = { arr: [...arr], heapType: type };
@@ -161,6 +166,7 @@ export function heapBuildHeap(values: number[], type: HeapType): HeapStep[] {
 }
 
 export function heapSort(values: number[]): HeapStep[] {
+  needNumbers(values, "Values", MAX.heap);
   const steps: HeapStep[] = [];
   const arr = [...values];
   const state: HeapState = { arr: [...arr], heapType: "max" };

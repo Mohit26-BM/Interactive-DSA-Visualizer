@@ -15,6 +15,7 @@ import {
   LL_CODE, LL_ANNOTATIONS,
 } from "@/lib/linked-list-engine";
 import { LinkedListStep } from "@/lib/types";
+import { parseNumberList } from "@/lib/parse-input";
 
 const DEFAULT = [10, 25, 7, 42, 3];
 
@@ -78,7 +79,9 @@ export default function SinglyLinkedListPage() {
   };
 
   const handleCustomInput = () => {
-    const nums = customInput.split(",").map((s) => parseInt(s.trim())).filter((n) => !isNaN(n));
+    const parsed = parseNumberList(customInput, { integersOnly: true });
+    if (parsed.error) { setInputError(parsed.error); return; }
+    const nums = parsed.values;
     if (nums.length === 0) { setInputError("Enter comma-separated numbers."); return; }
     if (nums.length > 10) { setInputError("Max 10 nodes."); return; }
     setInputError("");
@@ -96,7 +99,7 @@ export default function SinglyLinkedListPage() {
   const captionClass = phaseCaption[currentStep?.phase ?? "default"] ?? phaseCaption.default;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/linked-list" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,7 +107,6 @@ export default function SinglyLinkedListPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-sm font-bold">→</div>
           <h1 className="text-xl font-bold">Singly Linked List</h1>
         </div>
         {steps.length > 0 && step === steps.length - 1 && (

@@ -8,6 +8,7 @@ import CodePanel from "@/components/shared/CodePanel";
 import AIExplainer from "@/components/shared/AIExplainer";
 import { usePlayer } from "@/components/shared/usePlayer";
 import { lisDP, DP_CODE, DP_ANNOTATIONS, DP_COMPLEXITY, type LISStep } from "@/lib/dp-engine";
+import { parseNumberList } from "@/lib/parse-input";
 
 const phaseCaption: Record<string, string> = {
   insert:  "bg-indigo-500/15 border-indigo-500/30 text-indigo-200",
@@ -16,7 +17,6 @@ const phaseCaption: Record<string, string> = {
   default: "bg-amber-500/15 border-amber-500/30 text-amber-200",
 };
 
-const DEFAULT_ARR = [10, 9, 2, 5, 3, 7, 101, 18];
 
 export default function LISPage() {
   const [arrInput, setArrInput] = useState("10, 9, 2, 5, 3, 7, 101, 18");
@@ -27,12 +27,9 @@ export default function LISPage() {
   const currentStep = steps[step] as LISStep | undefined;
 
   const handleRun = () => {
-    const arr = arrInput
-      .split(/[,\s]+/)
-      .map(Number)
-      .filter((n) => !isNaN(n))
-      .slice(0, 12);
-    if (arr.length < 2) { setError("Enter at least 2 numbers."); return; }
+    const parsed = parseNumberList(arrInput, { integersOnly: true, min: 2, max: 12 });
+    if (parsed.error) { setError(parsed.error); return; }
+    const arr = parsed.values;
     setError("");
     setArrInput(arr.join(", "));
     setSteps(lisDP(arr));
@@ -52,7 +49,7 @@ export default function LISPage() {
   const lastStep = steps[steps.length - 1] as LISStep | undefined;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/dp" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,7 +57,6 @@ export default function LISPage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-amber-700 rounded-lg flex items-center justify-center text-sm font-bold">↗</div>
           <h1 className="text-xl font-bold">Longest Increasing Subsequence</h1>
           <span className="text-xs bg-amber-500/10 border border-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">
             1-D DP · O(n²) · traceback

@@ -4,7 +4,7 @@ import FadeIn from "@/components/shared/FadeIn";
 
 export default function TreePage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen text-white">
       <header className="border-b border-gray-800 px-6 py-4 flex items-center gap-4">
         <Link href="/" className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,6 @@ export default function TreePage() {
           </svg>
         </Link>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-green-700 rounded-lg flex items-center justify-center text-sm font-bold">⌥</div>
           <h1 className="text-xl font-bold">Trees</h1>
         </div>
       </header>
@@ -66,8 +65,6 @@ export default function TreePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TypeCard
                 href="/tree/bst"
-                icon="⌥"
-                color="bg-green-700"
                 title="Binary Search Tree"
                 subtitle="Ordered binary tree"
                 description="Each node: left subtree has smaller values, right has larger. Enables O(log n) search, insert, delete on balanced trees."
@@ -75,8 +72,6 @@ export default function TreePage() {
               />
               <TypeCard
                 href="/tree/avl"
-                icon="↕"
-                color="bg-emerald-700"
                 title="AVL Tree"
                 subtitle="Self-balancing BST"
                 description="Guarantees O(log n) height via LL/RR/LR/RL rotations. Every insert/delete rebalances automatically."
@@ -84,8 +79,6 @@ export default function TreePage() {
               />
               <TypeCard
                 href="/tree/heap"
-                icon="△"
-                color="bg-lime-700"
                 title="Heap"
                 subtitle="Min/Max Heap"
                 description="Complete binary tree with heap property. O(log n) insert/extract. O(n) buildHeap (Floyd's). Foundation for priority queues."

@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import { MAX, needNumbers } from "./limits";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -47,6 +48,7 @@ function getHeight(s: TreeState, id: string | null): number {
 }
 
 export function buildBST(values: number[]): TreeState {
+  needNumbers(values, "Values", MAX.tree);
   const s: TreeState = { nodes: [], root: null };
   for (const v of values) {
     insertBSTIntoState(s, v);
@@ -90,6 +92,7 @@ function insertBSTIntoState(s: TreeState, value: number): string | null {
 // ─── Operations ───────────────────────────────────────────────────────────────
 
 export function bstInsert(values: number[], value: number): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
 
@@ -139,6 +142,7 @@ export function bstInsert(values: number[], value: number): TreeStep[] {
 }
 
 export function bstSearch(values: number[], target: number): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
 
@@ -166,6 +170,7 @@ export function bstSearch(values: number[], target: number): TreeStep[] {
 }
 
 export function bstDelete(values: number[], target: number): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
 
@@ -253,6 +258,7 @@ export function bstDelete(values: number[], target: number): TreeStep[] {
 }
 
 export function bstInorder(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
   const visited: number[] = [];
@@ -276,6 +282,7 @@ export function bstInorder(values: number[]): TreeStep[] {
 }
 
 export function bstPreorder(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
   const visited: number[] = [];
@@ -299,6 +306,7 @@ export function bstPreorder(values: number[]): TreeStep[] {
 }
 
 export function bstPostorder(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
   const visited: number[] = [];
@@ -322,6 +330,7 @@ export function bstPostorder(values: number[]): TreeStep[] {
 }
 
 export function bstLevelOrder(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
   const visited: number[] = [];
@@ -356,6 +365,7 @@ export function bstLevelOrder(values: number[]): TreeStep[] {
 }
 
 export function bstFindMin(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
 
@@ -376,6 +386,7 @@ export function bstFindMin(values: number[]): TreeStep[] {
 }
 
 export function bstFindMax(values: number[]): TreeStep[] {
+  needNumbers(values, "Values", MAX.tree);
   const steps: TreeStep[] = [];
   const s = buildBST(values);
 
